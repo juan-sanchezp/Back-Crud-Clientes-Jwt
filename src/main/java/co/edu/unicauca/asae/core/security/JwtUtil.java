@@ -28,11 +28,14 @@ public class JwtUtil {
 
     public String generateJwtToken(Authentication authentication) {
 
-        UserDetails userPrincipal =
-                (UserDetails) authentication.getPrincipal();
+        UserDetails userPrincipal = (UserDetails) authentication.getPrincipal();
 
         return Jwts.builder()
                 .setSubject(userPrincipal.getUsername())
+                .claim("roles", userPrincipal.getAuthorities()
+                        .stream()
+                        .map(auth -> auth.getAuthority())
+                        .toList())
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + jwtExpirationMs))
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256)

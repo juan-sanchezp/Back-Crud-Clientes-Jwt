@@ -38,8 +38,9 @@ public class AuthController {
         try {
             Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                    loginRequest.getUsername(), 
+                    loginRequest.getUsername(),
                     loginRequest.getPassword()
+
                 )
             );
             
@@ -55,6 +56,7 @@ public class AuthController {
             return ResponseEntity.ok(response);
             
         } catch (Exception e) {
+            //e.printStackTrace();
             Map<String, String> error = new HashMap<>();
             error.put("error", "Usuario o contraseña incorrectos");
             return ResponseEntity.badRequest().body(error);

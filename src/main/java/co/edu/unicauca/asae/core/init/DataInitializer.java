@@ -37,21 +37,34 @@ public class DataInitializer implements CommandLineRunner {
         Rol rolAdmin = rolRepository.findByNombre(ERol.ROLE_ADMIN)
                 .orElseGet(() -> rolRepository.save(new Rol(ERol.ROLE_ADMIN)));
 
-        // Crear admin
+        // Crear ADMIN
         if (!usuarioRepository.existsByUsername("admin")) {
 
             Usuario admin = new Usuario();
             admin.setUsername("admin");
             admin.setPassword(passwordEncoder.encode("admin123"));
-            //admin.setPassword("admin123");
             admin.setNombre("Administrador");
             admin.setEmail("admin@sistema.local");
             admin.setRoles(Set.of(rolAdmin));
 
             usuarioRepository.save(admin);
-
             System.out.println("✔ Usuario ADMIN creado");
         }
-    }
-}
 
+        // Crear USER
+        if (!usuarioRepository.existsByUsername("user")) {
+
+            Usuario user = new Usuario();
+            user.setUsername("user");
+            user.setPassword(passwordEncoder.encode("user123"));
+            user.setNombre("Usuario Demo");
+            user.setEmail("user@sistema.local");
+            user.setRoles(Set.of(rolUser));
+
+            usuarioRepository.save(user);
+            System.out.println("✔ Usuario USER creado");
+        }
+    }
+
+}
+ 

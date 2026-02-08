@@ -45,8 +45,7 @@ public class ClienteRestController {
 		summary = "Listar clientes",
 		description = "Obtiene una lista completa de todos los clientes registrados"
 	)
-	//@PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
-	@PreAuthorize("hasanyRole('ADMIN','USER')")
+	@PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
 	//@PreAuthorize("hasRole('USER')")
 	@GetMapping("/clientes")
 	public List<Cliente> index() {

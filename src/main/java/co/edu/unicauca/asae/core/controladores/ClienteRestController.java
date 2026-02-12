@@ -31,7 +31,9 @@ import co.edu.unicauca.asae.core.services.IClienteService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-@CrossOrigin(origins = { "http://localhost:4200" }) //permite que el back acepte peticiones de angular
+@CrossOrigin(origins = { "http://localhost:4200",
+						 "https://client-region-app.vercel.app"
+ 						})
 
 @Tag(name = "Clientes", description = "Operaciones relacionadas con clientes y regiones")
 @RestController
